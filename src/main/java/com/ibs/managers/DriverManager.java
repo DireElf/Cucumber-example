@@ -30,8 +30,7 @@ public class DriverManager {
         if (webDriver == null) {
             ChromeOptions options = new ChromeOptions();
             options.addArguments("start-maximized");
-            options.addArguments("--disable-dev-shm-usage");
-            options.addArguments("--no-sandbox");
+            options.addArguments("--headless=new");
             webDriver = new ChromeDriver(options);
         }
         return webDriver;
