@@ -2,11 +2,14 @@ package com.ibs.managers;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+import static com.ibs.utils.constants.PropConst.BROWSER_TYPE;
 
 public class DriverManager {
     private WebDriver webDriver;
     private static DriverManager driverManager = null;
+    private static final PropManager propManager = PropManager.getPropManager();
 
     /**
      * Returns the singleton instance of the DriverManager. If it doesn't exist, a new instance is created.
@@ -28,10 +31,17 @@ public class DriverManager {
      */
     public WebDriver getWebDriver() {
         if (webDriver == null) {
-            ChromeOptions options = new ChromeOptions();
-            options.addArguments("start-maximized");
-            options.addArguments("--headless=new");
-            webDriver = new ChromeDriver(options);
+            String driverType = propManager.getProperty(BROWSER_TYPE);
+            switch (driverType){
+                case "chrome":
+                    webDriver = new ChromeDriver();
+                    break;
+                case "firefox":
+                    webDriver = new FirefoxDriver();
+                    break;
+                default:
+                    throw new RuntimeException("Unknown driver");
+            }
         }
         return webDriver;
     }

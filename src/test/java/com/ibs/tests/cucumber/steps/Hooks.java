@@ -6,8 +6,6 @@ import com.ibs.utils.WebDriverUtils;
 import io.cucumber.java.AfterAll;
 import io.cucumber.java.Before;
 import io.cucumber.java.BeforeAll;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 
 import static com.ibs.utils.constants.PropConst.*;
 
@@ -17,12 +15,12 @@ public class Hooks {
 
     @BeforeAll
     public static void configureWebDriver() {
-        WebDriver driver = driverManager.getWebDriver();
-        WebDriverUtils.setWebDriverWaits(
-                driver,
+        WebDriverUtils.setWebDriverOptions(
+                driverManager.getWebDriver(),
                 Long.parseLong(propManager.getProperty(IMPLICITLY_WAIT)),
                 Long.parseLong(propManager.getProperty(PAGE_LOAD_TIMEOUT))
         );
+        driverManager.getWebDriver().get(propManager.getProperty(TEST_APP_URL));
     }
 
     @Before()
