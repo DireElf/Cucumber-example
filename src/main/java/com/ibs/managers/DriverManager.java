@@ -1,5 +1,6 @@
 package com.ibs.managers;
 
+import com.ibs.utils.WebDriverUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -7,6 +8,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
 import static com.ibs.utils.constants.PropConst.BROWSER;
+import static com.ibs.utils.constants.PropConst.REMOTE_URL;
 
 public class DriverManager {
     private WebDriver webDriver;
@@ -34,17 +36,16 @@ public class DriverManager {
     public WebDriver getWebDriver() {
         if (webDriver == null) {
             String browser = propManager.getProperty(BROWSER);
+            if (propManager.getProperty(REMOTE_URL) != null) {
+                webDriver = WebDriverUtils.setRemoteDriver();
+            }
             switch (browser) {
                 case "chrome":
                     ChromeOptions chromeOptions = new ChromeOptions();
-                    chromeOptions.addArguments("--headless");
-                    chromeOptions.addArguments("window-size=1920x1080");
                     webDriver = new ChromeDriver(chromeOptions);
                     break;
                 case "firefox":
                     FirefoxOptions firefoxOptions = new FirefoxOptions();
-                    firefoxOptions.addArguments("--headless");
-                    firefoxOptions.addArguments("window-size=1920x1080");
                     webDriver = new FirefoxDriver(firefoxOptions);
                     break;
                 default:

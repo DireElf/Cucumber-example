@@ -1,14 +1,23 @@
 package com.ibs.utils;
 
 import com.ibs.managers.DriverManager;
+import com.ibs.managers.PropManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriverService;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URI;
 import java.time.Duration;
+import java.util.HashMap;
+import java.util.Map;
+
+import static com.ibs.utils.constants.PropConst.REMOTE_URL;
 
 public class WebDriverUtils {
+    private static PropManager propManager = PropManager.getPropManager();
+
     /**
      * Creates and returns an instance of {@link WebDriverWait} with the specified timeout duration.
      *
@@ -34,5 +43,20 @@ public class WebDriverUtils {
                 .implicitlyWait(Duration.ofSeconds(implicitlyWait));
         driver.manage().timeouts()
                 .pageLoadTimeout(Duration.ofSeconds(pageLoadTimeout));
+    }
+
+    public static RemoteWebDriver setRemoteDriver() {
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setBrowserName(propManager.getProperty("browser"));
+        capabilities.setVersion("109.0");
+        Map<String, Object> selenoidOptions = new HashMap<>();
+        selenoidOptions.put("enableVNC", true);
+        selenoidOptions.put("enableVideo", false);
+        capabilities.setCapability("selenoid:options", selenoidOptions);
+        try {
+            return new RemoteWebDriver(URI.create(propManager.getProperty(REMOTE_URL)).toURL(), capabilities);
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
