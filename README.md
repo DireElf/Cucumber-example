@@ -1,7 +1,7 @@
 ## Окружение
 
 - Java версии 11 или выше.
-- Установленные Maven и Google Chrome.
+- Установленные Maven и Google Chrome (Firefox, если требуется).
 
 ## Запуск
 
