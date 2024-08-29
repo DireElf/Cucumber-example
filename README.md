@@ -5,10 +5,10 @@
 
 ## Запуск
 
-Инициализация раннера, запускающего Cucumber-тесты для Chrome:
+Инициализация раннера, запускающего Cucumber-тесты для Chrome (по умолчанию):
 
 ```bash
-mvn test -Dtest=TestRunner -Dbrowser=chrome
+mvn test -Dtest=TestRunner
 ```
 ---
 
