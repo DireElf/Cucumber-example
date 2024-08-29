@@ -35,10 +35,4 @@ public class WebDriverUtils {
         driver.manage().timeouts()
                 .pageLoadTimeout(Duration.ofSeconds(pageLoadTimeout));
     }
-
-    public static ChromeDriverService setDriver(String path) {
-        return new ChromeDriverService.Builder()
-                .usingDriverExecutable(new File(path))
-                .build();
-    }
 }

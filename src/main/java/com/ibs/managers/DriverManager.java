@@ -4,6 +4,7 @@ import com.ibs.utils.WebDriverUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 import static com.ibs.utils.constants.PropConst.*;
 
@@ -32,19 +33,17 @@ public class DriverManager {
      */
     public WebDriver getWebDriver() {
         if (webDriver == null) {
-            String driverType = propManager.getProperty(BROWSER);
-            ChromeDriverService service;
-            switch (driverType){
-                case "chrome_win":
-                    service = WebDriverUtils.setDriver(propManager.getProperty(PATH_TO_CHROME_WINDOWS_DRIVER));
+            String browser = propManager.getProperty(BROWSER);
+            switch (browser) {
+                case "chrome":
+                    webDriver = new ChromeDriver();
                     break;
-                case "chrome_lin":
-                    service = WebDriverUtils.setDriver(propManager.getProperty(PATH_TO_CHROME_LINUX_DRIVER));
+                case "firefox":
+                    webDriver = new FirefoxDriver();
                     break;
                 default:
                     throw new RuntimeException("Unknown driver");
             }
-            webDriver = new ChromeDriver(service);
         }
         return webDriver;
     }

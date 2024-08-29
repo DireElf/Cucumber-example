@@ -20,7 +20,6 @@ public class Hooks {
                 Long.parseLong(propManager.getProperty(IMPLICITLY_WAIT)),
                 Long.parseLong(propManager.getProperty(PAGE_LOAD_TIMEOUT))
         );
-        driverManager.getWebDriver().get(propManager.getProperty(TEST_APP_URL));
     }
 
     @Before()

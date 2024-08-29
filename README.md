@@ -5,17 +5,17 @@
 
 ## Запуск
 
-Инициализация раннера, запускающего Cucumber-тесты на Windows Chrome (64-version):
+Инициализация раннера, запускающего Cucumber-тесты для Chrome:
 
 ```bash
-mvn test -Dtest=TestRunner
+mvn test -Dtest=TestRunner -Dbrowser=chrome
 ```
 ---
 
-То же самое на Linux Chrome (64-version):
+То же самое для Firefox:
 
 ```bash
-mvn test -Dtest=TestRunner -Dbrowser=chrome_lin
+mvn test -Dtest=TestRunner -Dbrowser=firefox
 ```
 ---
 
