@@ -39,7 +39,7 @@ public class DriverManager {
             switch (browser) {
                 case "chrome":
                     ChromeOptions chromeOptions = new ChromeOptions();
-                    chromeOptions.addArguments("--headless=new");
+                    chromeOptions.addArguments("--headless");
                     webDriver = new ChromeDriver(chromeOptions);
                     break;
                 case "firefox":
