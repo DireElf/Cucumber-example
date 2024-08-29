@@ -40,7 +40,7 @@ public class DriverManager {
                 case "chrome":
                     ChromeOptions chromeOptions = new ChromeOptions();
                     chromeOptions.addArguments("--headless");
-                    chromeOptions.addArguments("--no-sandbox");
+                    chromeOptions.addArguments("window-size=1920x1080");
                     webDriver = new ChromeDriver(chromeOptions);
                     break;
                 case "firefox":
