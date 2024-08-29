@@ -44,7 +44,7 @@ public class DriverManager {
                     break;
                 case "firefox":
                     FirefoxOptions firefoxOptions = new FirefoxOptions();
-                    firefoxOptions.addArguments("--headless=new");
+                    firefoxOptions.addArguments("--headless");
                     webDriver = new FirefoxDriver(firefoxOptions);
                     break;
                 default:
