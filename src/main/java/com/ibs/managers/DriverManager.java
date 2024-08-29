@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-import static com.ibs.utils.constants.PropConst.BROWSER_TYPE;
+import static com.ibs.utils.constants.PropConst.BROWSER;
 
 public class DriverManager {
     private WebDriver webDriver;
@@ -31,7 +31,7 @@ public class DriverManager {
      */
     public WebDriver getWebDriver() {
         if (webDriver == null) {
-            String driverType = propManager.getProperty(BROWSER_TYPE);
+            String driverType = propManager.getProperty(BROWSER);
             switch (driverType){
                 case "chrome":
                     webDriver = new ChromeDriver();
