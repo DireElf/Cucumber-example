@@ -4,7 +4,9 @@ import com.ibs.utils.WebDriverUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 
 import static com.ibs.utils.constants.PropConst.*;
 
@@ -36,10 +38,14 @@ public class DriverManager {
             String browser = propManager.getProperty(BROWSER);
             switch (browser) {
                 case "chrome":
-                    webDriver = new ChromeDriver();
+                    ChromeOptions chromeOptions = new ChromeOptions();
+                    chromeOptions.addArguments("--headless=new");
+                    webDriver = new ChromeDriver(chromeOptions);
                     break;
                 case "firefox":
-                    webDriver = new FirefoxDriver();
+                    FirefoxOptions firefoxOptions = new FirefoxOptions();
+                    firefoxOptions.addArguments("--headless=new");
+                    webDriver = new FirefoxDriver(firefoxOptions);
                     break;
                 default:
                     throw new RuntimeException("Unknown driver");
