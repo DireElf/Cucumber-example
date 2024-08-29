@@ -1,6 +1,6 @@
 node ('master'){
     stage('Preparation') {
-       checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/DireElf/Cucumber-example.git']])
+       checkout scm
     }
     stage('Build') {
         withMaven(globalMavenSettingsConfig: '', jdk: '', maven: 'Default', mavenSettingsConfig: '', traceability: true) {
