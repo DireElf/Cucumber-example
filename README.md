@@ -1,19 +1,21 @@
 ## Окружение
 
-- Приложение `qualit-sandbox`, запущенное на порту `8080`.
 - Java версии 11 или выше.
 - Установленные Maven и Google Chrome.
 
 ## Запуск
 
-Запуск всех последующих команд выполняется из директории проекта.
-
-### Практическое задание №5: "Cucumber"
-
-(Код можно найти в 'src/test/java/com/ibs/tests/cucumber') Инициализация раннера, запускающего Cucumber-тесты:
+Инициализация раннера, запускающего Cucumber-тесты на Windows Chrome (64-version):
 
 ```bash
 mvn test -Dtest=TestRunner
+```
+---
+
+То же самое на Linux Chrome (64-version):
+
+```bash
+mvn test -Dtest=TestRunner -Dbrowser=chrome_lin
 ```
 ---
 

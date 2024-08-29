@@ -2,8 +2,10 @@ package com.ibs.utils;
 
 import com.ibs.managers.DriverManager;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
 import java.time.Duration;
 
 public class WebDriverUtils {
@@ -32,5 +34,11 @@ public class WebDriverUtils {
                 .implicitlyWait(Duration.ofSeconds(implicitlyWait));
         driver.manage().timeouts()
                 .pageLoadTimeout(Duration.ofSeconds(pageLoadTimeout));
+    }
+
+    public static ChromeDriverService setDriver(String path) {
+        return new ChromeDriverService.Builder()
+                .usingDriverExecutable(new File(path))
+                .build();
     }
 }
