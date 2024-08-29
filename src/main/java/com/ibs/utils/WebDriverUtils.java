@@ -13,6 +13,7 @@ import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.ibs.utils.constants.PropConst.BROWSER;
 import static com.ibs.utils.constants.PropConst.REMOTE_URL;
 
 public class WebDriverUtils {
@@ -47,11 +48,13 @@ public class WebDriverUtils {
 
     public static RemoteWebDriver setRemoteDriver() {
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setBrowserName(propManager.getProperty("browser"));
-        capabilities.setVersion("109.0");
         Map<String, Object> selenoidOptions = new HashMap<>();
+        selenoidOptions.put("browserName", propManager.getProperty(BROWSER));
+        selenoidOptions.put("browserVersion", "109.0");
         selenoidOptions.put("enableVNC", true);
         selenoidOptions.put("enableVideo", false);
+//        selenoidOptions.put("headless", true);
+//        selenoidOptions.put("window-size", "1920x1080");
         capabilities.setCapability("selenoid:options", selenoidOptions);
         try {
             return new RemoteWebDriver(URI.create(propManager.getProperty(REMOTE_URL)).toURL(), capabilities);

@@ -38,19 +38,21 @@ public class DriverManager {
             String browser = propManager.getProperty(BROWSER);
             if (propManager.getProperty(REMOTE_URL) != null) {
                 webDriver = WebDriverUtils.setRemoteDriver();
+            } else {
+                switch (browser) {
+                    case "chrome":
+                        ChromeOptions chromeOptions = new ChromeOptions();
+                        webDriver = new ChromeDriver(chromeOptions);
+                        break;
+                    case "firefox":
+                        FirefoxOptions firefoxOptions = new FirefoxOptions();
+                        webDriver = new FirefoxDriver(firefoxOptions);
+                        break;
+                    default:
+                        throw new RuntimeException("Unknown driver");
+                }
             }
-            switch (browser) {
-                case "chrome":
-                    ChromeOptions chromeOptions = new ChromeOptions();
-                    webDriver = new ChromeDriver(chromeOptions);
-                    break;
-                case "firefox":
-                    FirefoxOptions firefoxOptions = new FirefoxOptions();
-                    webDriver = new FirefoxDriver(firefoxOptions);
-                    break;
-                default:
-                    throw new RuntimeException("Unknown driver");
-            }
+
         }
         return webDriver;
     }
