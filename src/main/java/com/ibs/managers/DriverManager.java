@@ -39,6 +39,7 @@ public class DriverManager {
             switch (browser) {
                 case "chrome":
                     ChromeOptions chromeOptions = new ChromeOptions();
+                    chromeOptions.addArguments("--headless");
                     chromeOptions.addArguments("--no-sandbox");
                     webDriver = new ChromeDriver(chromeOptions);
                     break;
