@@ -26,8 +26,7 @@ public class WebDriverUtils {
      * @param implicitlyWait the duration (in seconds) for the implicit wait timeout
      * @param pageLoadTimeout the duration (in seconds) for the page load timeout
      */
-    public static void setWebDriverOptions(WebDriver driver, Long implicitlyWait, Long pageLoadTimeout) {
-        driver.manage().window().maximize();
+    public static void setWebDriverWaits(WebDriver driver, Long implicitlyWait, Long pageLoadTimeout) {
         driver.manage().timeouts()
                 .implicitlyWait(Duration.ofSeconds(implicitlyWait));
         driver.manage().timeouts()

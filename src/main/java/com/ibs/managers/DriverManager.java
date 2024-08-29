@@ -2,6 +2,7 @@ package com.ibs.managers;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 public class DriverManager {
     private WebDriver webDriver;
@@ -27,7 +28,11 @@ public class DriverManager {
      */
     public WebDriver getWebDriver() {
         if (webDriver == null) {
-            webDriver = new ChromeDriver();
+            ChromeOptions options = new ChromeOptions();
+            options.addArguments("start-maximized");
+            options.addArguments("--disable-dev-shm-usage");
+            options.addArguments("--no-sandbox");
+            webDriver = new ChromeDriver(options);
         }
         return webDriver;
     }
